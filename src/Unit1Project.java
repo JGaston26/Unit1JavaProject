@@ -18,7 +18,7 @@ public class Unit1Project {
         while (!cost.equals("End"))
         {
             menu.printMenu();
-            System.out.print("Enter item on menu(-1 to end): ");
+            System.out.print("Enter item on menu(type End to end): ");
             cost = scan.nextLine();
             switch (cost) {
                 case "Krabby Patty" -> {
