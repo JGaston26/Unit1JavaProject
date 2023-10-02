@@ -3,23 +3,46 @@ public class Unit1Project {
     public static void main(String[]args)
     {
         Scanner scan = new Scanner(System.in);
+        Menu menu = new Menu();
 
-        System.out.println("Welcome to the tip calculator!");
+        System.out.println("Welcome to the Krusty Krab, home of the Krabby Patty!");
         System.out.print("How many people are in your group: ");
         int numPpl = scan.nextInt();
 
+
         System.out.print("What is the tip percentage: ");
         int tipPercent = scan.nextInt();
-        double cost = 0;
+        double price = 0;
+        String cost = "";
         double totalPrice = 0.0;
-        while (cost != -1)
+        while (!cost.equals("End"))
         {
-            System.out.print("Enter a cost in dollars and cents, e.g. 12.50 (-1 to end): ");
-            cost = scan.nextDouble();
-            totalPrice += cost;
+            menu.printMenu();
+            System.out.print("Enter item on menu(-1 to end): ");
+            cost = scan.nextLine();
+            switch (cost) {
+                case "Krabby Patty" -> {
+                    price += 1.25;
+                    System.out.println(cost);
+                }
+                case "Krabby Patty w/sea cheese", "Kelp Rings" -> price += 1.50;
+                case "Double Krabby Patty", "Golden Loaf", "Footlong", "Medium Coral Bits", "Medium Seafoam Soda", "Kelp Shake" -> price += 2.00;
+                case "Double Krabby Patty w/sea cheese" -> price += 2.25;
+                case "Triple Krabby Patty", "Large Coral Bits", "Large Seafoam Soda" -> price += 3.00;
+                case "Triple Krabby Patty w/sea cheese" -> price += 3.25;
+                case "Krabby Meal" -> price += 3.50;
+                case "Double Krabby Meal" -> price += 3.75;
+                case "Triple Krabby Meal" -> price += 4.00;
+                case "Salty Sea Dog" -> price += 1.25;
+                case "Golden Loaf w/sauce" -> price += 2.50;
+                case "Small Coral Bits", "Small Seafoam Soda" -> price += 1.00;
+                case "Kelp Rings w/ salty sauce" -> cost += 2.00;
+            }
+            totalPrice += price;
+            System.out.println(totalPrice);
 
         }
-        totalPrice ++;
+        totalPrice = totalPrice/2;
         System.out.println("-----------------------");
         System.out.println("Total bill before tip: $" + String.format("%.2f",totalPrice));
         System.out.println("Total percentage: " + tipPercent + "%");
